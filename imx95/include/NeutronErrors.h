@@ -41,4 +41,10 @@ typedef enum ERROR_COMPONENT_ID {
 } ERROR_COMPONENT_ID;
 
 
+/// Retrieve component name as string from NeutronError code.
+char *getNeutronErrorComponent(NeutronError ne);
+
+/// Retrieve catefory as string from NeutronError code.
+char *getNeutronErrorCategory(NeutronError ne);
+
 #endif // NEUTRON_ERRORS_H
