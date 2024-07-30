@@ -36,6 +36,11 @@ typedef enum ERROR_CATEGORY_DRIVER {
 /// Trace confinguration to enable job level tracing.
 #define TRACE_CONFIG_JOB_LEVEL (1U << 1)
 
+// Macro to define where to allocate memory for NeutronCtx
+#ifndef NO_HEAP_USAGE
+#define NO_HEAP_USAGE 0
+#endif
+
 /* Neutron Driver errors */
 #define GEN_NEUTRON_DRIVER_ERROR(category, code) GEN_NEUTRON_ERROR(ERROR_COMPONENT_DRIVER, category, code)
 #define GEN_NEUTRON_DRIVER_GENERIC_ERROR()       GEN_NEUTRON_DRIVER_ERROR(ERROR_CATEGORY_DRIVER_GENERIC, __LINE__)
@@ -134,6 +139,10 @@ NeutronError neutronDeinit();
 /// - This function only prepares the execution by transferring the parameters to the firmware.
 /// - This function allows caching a model and then running the same model but with different
 ///   input data (assuming the new input data replaces the old input data by reusing the same buffers).
+/// - In case external allocated memory shall be used for the ModelHandle, e.g. from the Tensorflow
+///   tensor arena, hdl shall be a pointer to the start of the allocated memory block.
+//    If a pointer to NULL is passed, memory will be allocated by the driver
+///   from HEAP. If no HEAP is available, an error will be thrown.
 NeutronError neutronModelPrepare(const NeutronModelConfig *mcfg, NeutronModelHandle *hdl);
 
 /// - Unprepare Neutron execution handle.
@@ -155,11 +164,13 @@ NeutronError neutronWait(NeutronModelHandle hdl, const NeutronDataConfig *dcfg);
 /// - This functionality is only available for neutronRunNonBlocking.
 NeutronError neutronIsReady(NeutronModelHandle hdl, bool *isReady);
 
+#ifndef NDEBUG
 /// - Set tracing information.
 void neutronSetTrace(NeutronModelHandle hdl, NeutronTraceConfig *tcfg);
 
 /// - Get tracing result to buffer.
 NeutronError neutronGetTrace(NeutronModelHandle hdl, char **buffer, size_t *size);
+#endif
 
 /// - Perform power management to suspend Neutron hardware.
 //  - This function disables the clock for Neutron.
@@ -171,6 +182,9 @@ NeutronError neutronResume();
 
 /// - Used to initialize custom API's or variables implemented by external application.
 NeutronError neutronSetConfig(NeutronConfig *config);
+
+/// - Used to get NeutronContext size.
+size_t neutronGetModelContextSize();
 
 /// Other functions to control the state of driver/firmware.
 #ifdef __cplusplus
