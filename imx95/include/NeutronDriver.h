@@ -135,10 +135,14 @@ NeutronError neutronInit();
 /// - Deinitialize the Neutron Driver library, releasing any resources aquired by neutronInit
 NeutronError neutronDeinit();
 
+/// - Prepare Neutron execution for a model with custom firmware.
+/// - This function is only available for Neutron-S.
+NeutronError neutronCustomPrepare(int32_t *inputSize, int32_t numInputs, int32_t *outputSize, int32_t numOutputs,
+                                  const void *firmware, size_t firmwareSize, NeutronModelHandle *hdl);
+
 /// - Run Neutron custom firmware and get the results.
 /// - This function is only available for Neutron-S.
-NeutronError neutronCustomExec(const void **inputs, int32_t *inputSize, int32_t numInputs, void **outputs,
-                               int32_t *outputSize, int32_t numOutputs);
+NeutronError neutronCustomExec(NeutronModelHandle hdl, const NeutronDataConfig *neutron_dcfg);
 
 /// - Prepare Neutron execution for a model with the given configuration.
 /// - This function only prepares the execution by transferring the parameters to the firmware.
