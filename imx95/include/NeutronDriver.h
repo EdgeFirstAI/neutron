@@ -144,6 +144,10 @@ NeutronError neutronCustomPrepare(int32_t *inputSize, int32_t numInputs, int32_t
 /// - This function is only available for Neutron-S.
 NeutronError neutronCustomExec(NeutronModelHandle hdl, const NeutronDataConfig *neutron_dcfg);
 
+/// - Setup the input and output data ptr to use Neutron memory area.
+/// - The input and ouput data ptr is stored in neutron_dcfg.
+NeutronError neutronDataSetup(NeutronModelHandle hdl, NeutronDataConfig *neutron_dcfg);
+
 /// - Prepare Neutron execution for a model with the given configuration.
 /// - This function only prepares the execution by transferring the parameters to the firmware.
 /// - This function allows caching a model and then running the same model but with different
