@@ -1,3 +1,4 @@
+ifneq ($(filter IMX95 IMX943, $(BOARD_SOC_TYPE)),)
 LOCAL_PATH := $(my-dir)
 
 include $(CLEAR_VARS)
@@ -35,3 +36,4 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/lib64/
 LOCAL_SRC_FILES := imx95/library/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 include $(BUILD_PREBUILT)
 
+endif
