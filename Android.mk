@@ -1,6 +1,6 @@
-ifneq ($(filter IMX95 IMX943, $(BOARD_SOC_TYPE)),)
 LOCAL_PATH := $(my-dir)
 
+ifneq ($(filter IMX95 IMX943, $(BOARD_SOC_TYPE)),)
 include $(CLEAR_VARS)
 LOCAL_MODULE := NeutronFirmware.elf
 LOCAL_MODULE_TAGS := optional
@@ -46,3 +46,42 @@ endif
 include $(BUILD_PREBUILT)
 
 endif
+
+# benchmark_model
+include $(CLEAR_VARS)
+LOCAL_MODULE := benchmark_model
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_BUILT_MODULE_STEM := package.apk
+LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_VENDOR_MODULE := true
+LOCAL_CERTIFICATE := platform
+LOCAL_ENFORCE_USES_LIBRARIES := false
+LOCAL_SRC_FILES := Android/TfLiteApks/$(LOCAL_MODULE).apk
+include $(BUILD_PREBUILT)
+
+# label_image
+include $(CLEAR_VARS)
+LOCAL_MODULE := label_image
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_BUILT_MODULE_STEM := package.apk
+LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_VENDOR_MODULE := true
+LOCAL_CERTIFICATE := platform
+LOCAL_ENFORCE_USES_LIBRARIES := false
+LOCAL_SRC_FILES := Android/TfLiteApks/$(LOCAL_MODULE).apk
+include $(BUILD_PREBUILT)
+
+# TfliteCameraDemo
+include $(CLEAR_VARS)
+LOCAL_MODULE := TfliteCameraDemo
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_BUILT_MODULE_STEM := package.apk
+LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_VENDOR_MODULE := true
+LOCAL_CERTIFICATE := platform
+LOCAL_ENFORCE_USES_LIBRARIES := false
+LOCAL_SRC_FILES := Android/TfLiteApks/$(LOCAL_MODULE).apk
+include $(BUILD_PREBUILT)
