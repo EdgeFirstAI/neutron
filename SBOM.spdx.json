@@ -2,13 +2,13 @@
   "SPDXID": "SPDXRef-DOCUMENT",
   "spdxVersion": "SPDX-2.3",
   "creationInfo": {
-    "created": "2025-08-24T08:16:55Z",
+    "created": "2025-11-12T07:05:27Z",
     "creators": [
       "Organization: NXP"
     ],
     "licenseListVersion": "3.20"
   },
-  "name": "neutron-LF_6.12.34_2.1.0",
+  "name": "neutron-LF_6.12.49_2.2.0",
   "dataLicense": "CC0-1.0",
   "hasExtractedLicensingInfos": [
     {
@@ -17,15 +17,15 @@
       "name": "LA_OPT_NXP_Software_License v63 May 2025 clause 2.3"
     }
   ],
-  "documentNamespace": "https://nxp.com/spdx/1af9d044-a19a-44db-b68b-d348de90e533",
+  "documentNamespace": "https://nxp.com/spdx/ad881218-1d07-4e31-9ebd-0161e9766eea",
   "packages": [
     {
-      "SPDXID": "SPDXRef-package-1af9d044-a19a-44db-b68b-d348de90e533",
+      "SPDXID": "SPDXRef-package-ad881218-1d07-4e31-9ebd-0161e9766eea",
       "name": "neutron",
-      "versionInfo": "LF_6.12.34_2.1.0",
+      "versionInfo": "LF_6.12.49_2.2.0",
       "licenseConcluded": "(LicenseRef-fb01c3d1-c0c8-43a5-a164-c3942c52e011)",
       "licenseDeclared": "(LicenseRef-fb01c3d1-c0c8-43a5-a164-c3942c52e011)",
-      "downloadLocation": "https://github.com/nxp-imx/neutron -b lf-6.12.34-2.1.0",
+      "downloadLocation": "https://github.com/nxp-imx/neutron -b lf-6.12.49-2.2.0",
       "originator": "Organization: neutron",
       "supplier": "NOASSERTION",
       "externalRefs": [],
@@ -36,7 +36,7 @@
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-package-1af9d044-a19a-44db-b68b-d348de90e533"
+      "relatedSpdxElement": "SPDXRef-package-ad881218-1d07-4e31-9ebd-0161e9766eea"
     }
   ]
 }
