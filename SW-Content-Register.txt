@@ -1,6 +1,6 @@
 Release Name: neutron-software-stack
 Release Version: 1.0.0
-Package License: LA_OPT_NXP_Software_License v63 May 2025 - Additional distribution license granted - Section 2.3 applies
+Package License: LA_OPT_NXP_Software_License v64.2 May 2026 - Additional distribution license granted - Section 2.3 applies
 License Files: LICENSE.txt
 Release Location: https://github.com/nxp-imx/neutron
 Origin: NXP (proprietary)
