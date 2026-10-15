@@ -25,6 +25,22 @@ extern "C" {
 #define GEN_NEUTRON_DRIVER_ERROR(category, code) GEN_NEUTRON_ERROR(ERROR_COMPONENT_DRIVER, category, code)
 #define GEN_NEUTRON_DRIVER_GENERIC_ERROR()       GEN_NEUTRON_DRIVER_ERROR(ERROR_CATEGORY_DRIVER_GENERIC, __LINE__)
 
+/// Bit offset of the batch count field in NeutronMatmulHeader::rhsRowsAndBatch.
+/// Encoding: rhsRowsAndBatch = (batch << NEUTRON_MATMUL_BATCH_SHIFT) | numRowsB
+/// bits [17:0]  — numRowsB (number of output channels N)
+/// bits [31:18] — batch    (number of batched matmul iterations)
+#define NEUTRON_MATMUL_BATCH_SHIFT 18
+
+/// Values for NeutronMatmulHeader::packed.
+/// Positive = weights organized at compile time (packed fetch path).
+/// Negative = weights organized at runtime by kernel (unpacked fetch path).
+/// |value| == 1: unsigned activations (normal matmul).
+/// |value| == 2: signed activations (activation x activation attention path).
+#define NEUTRON_MATMUL_PACKED_UNSIGNED   1
+#define NEUTRON_MATMUL_PACKED_SIGNED     2
+#define NEUTRON_MATMUL_UNPACKED_UNSIGNED -1
+#define NEUTRON_MATMUL_UNPACKED_SIGNED   -2
+
 /// Type definition for a Neutron model handle. This is an identifier used to uniquely identify a model or subgraph.
 /// A model refers to a complete ML model, or a subgraph that represents a portion of a model offloaded to the Neutron
 /// hardware accelerator. The convention is that the value NEUTRON_INVALID_HANDLE handle corresponds to an invalid
@@ -106,6 +122,113 @@ typedef struct {
     const char *hashString;
     uint32_t hashUint32;
 } NeutronSdkVersion;
+
+/// Layout of the spezialized matmul kernel info header read by the Neutron firmware.
+///
+/// The firmware entry point matmul() fetches the first 16 words into TCM.
+typedef struct __attribute__((packed)) {
+
+    /// [word 0] lengthsCompressedByteOffset
+    ///   byte offset from the start of this header to the compressedSizes array.
+    ///   Kernel usage: inArgs.lengths_compressed = (int32_t*)(args + lengthsCompressedByteOffset/4)
+    int32_t lengthsCompressedByteOffset;
+
+    /// [word 1] decodeBiasByteOffset
+    ///   byte offset from the start of this header to the decodeBias array.
+    ///   Kernel usage: inArgs.decodeBias = (int8_t *)(args + decodeBiasByteOffset / 4);
+    int32_t decodeBiasByteOffset;
+
+    /// [word 2] lhsRows (M)
+    ///   Number of rows in the LHS matrix (batch size / sequence length).
+    ///   Kernel usage: inArgs.rA = lhsRows
+    int32_t lhsRows;
+
+    /// [word 3] lhsCols (K)
+    ///   Number of columns in the LHS matrix (inner / embedding dimension).
+    ///   Kernel usage: inArgs.cA = lhsCols
+    int32_t lhsCols;
+
+    /// [word 4] rhsRowsAndBatch
+    ///   Encodes two fields:
+    ///     bits [17:0]  — number of valid output channels (N), rounded up to
+    ///                    next multiple of 16 internally by the kernel.
+    ///     bits [31:18] — batch: number of batched matmul iterations.
+    ///   For single-batch matmul: (1 << 18) | N
+    ///   Kernel usage: numRowsBSkip = rhsRowsAndBatch & 0x03FFFF
+    ///                 batch        = rhsRowsAndBatch >> 18
+    int32_t rhsRowsAndBatch;
+
+    /// [word 5] lhsByteOffset
+    ///   Byte offset from the start of this header to the LHS (input activation)
+    ///   data buffer.
+    ///   Kernel usage : inArgs.A = (uint8_t*)(args + lhsByteOffset/4)
+    int32_t lhsByteOffset;
+
+    /// [word 6] rhsByteOffset
+    ///   Byte offset from the start of this header to the RHS (weight) data.
+    ///   Kernel usage: inArgs.B = (int8_t*)(args + rhsByteOffset/4)
+    int32_t rhsByteOffset;
+
+    /// [word 7] biasByteOffset
+    ///   Byte offset from the start of this header to the bias vector
+    ///   (int32, length N).
+    ///   Kernel usage: inArgs.bias = (int32_t*)(args + biasByteOffset/4)
+    int32_t biasByteOffset;
+
+    /// [word 8] postScaleByteOffset
+    ///   Byte offset from the start of this header to the per-channel post-scale
+    ///   vector (int32, length N).
+    ///   Kernel usage: inArgs.postScale = (int32_t*)(args + postScaleByteOffset/4)
+    int32_t postScaleByteOffset;
+
+    /// [word 9] resultByteOffset
+    ///   Byte offset from the start of this header to the output result buffer
+    ///   (int32, size M*N).
+    ///   Kernel usage: inArgs.result = (uint8_t*)(args + resultByteOffset/4)
+    int32_t resultByteOffset;
+
+    /// [word 10] packed
+    ///   Controls the weight fetch path and input/output signedness:
+    ///     > 1  : packed, signed   (weights pre-organized, signed activation)
+    ///       1  : packed, unsigned (weights pre-organized, unsigned activation)
+    ///       0  : unpacked         (weights organized at runtime by kernel)
+    ///      -1  : unpacked, unsigned activation x activation (attention)
+    ///     < -1 : unpacked, signed activation x activation (attention)
+    ///   Kernel usage: int packed = packed
+    ///                 inpSigned = outSigned = (packed < -1 || packed > 1)
+    ///                 packed path taken when packed > 0
+    int32_t packed;
+
+    /// [word 11] resultNumBytes
+    ///   Number of bytes per output element. 4 = int32, 1 = int8.
+    ///   Kernel usage: inArgs.resultNumBytes = (resultNumBytes == 4) ? 4 : 1
+    int32_t resultNumBytes;
+
+    /// [word 12] weightBits
+    ///   Bit-width of weight elements. 8 for int8 weights.
+    ///   Kernel usage: inArgs.weightBits = weightBits
+    int32_t weightBits;
+
+    /// [word 13] groupSize
+    ///   Group size for grouped quantization / weight decode.
+    ///   Negative value means no grouping (decodeWeights = groupSize > 0).
+    ///   Set at runtime by the plugin as -1 for non-grouped matmul.
+    ///   Kernel usage: inArgs.groupSize = groupSize
+    ///                 decodeWeights = (groupSize > 0)
+    int32_t groupSize;
+
+    /// [word 14] decodePostScaleByteOffset
+    ///   Byte offset to the decode post-scale buffer used for grouped
+    ///   quantization weight decode. 0 when decodeWeights=false.
+    ///   Kernel usage: inArgs.decodePostScale = (int16_t*)(args + decodePostScaleByteOffset/4)
+    int32_t decodePostScaleByteOffset;
+
+    /// [word 15] decodeInputByteOffset
+    ///   Byte offset to the decode input buffer used for grouped quantization
+    ///   weight decode. 0 when decodeWeights=false.
+    ///   Kernel usage: inArgs.decodeInput = (uint8_t*)(args + decodeInputByteOffset/4)
+    int32_t decodeInputByteOffset;
+} NeutronMatmulHeader;
 
 /* Invalid handle, returned by neutronModelPrepare() if an error occurred. */
 #define NEUTRON_INVALID_HANDLE NULL
@@ -200,7 +323,7 @@ NeutronError releaseBuffer(void *buffer);
 NeutronError clean_cache(const void *addr, int size);
 
 /// - Function for calling firmware for specialized kernel (matmul)
-NeutronError matmul(const void *info, int sizeInfo, const void *in, int sizeIn, const void *out, int sizeOut,
+NeutronError matmul(const NeutronMatmulHeader *info, const void *in, int sizeIn, const void *out, int sizeOut,
                     int idxSlot);
 
 /// Other functions to control the state of driver/firmware.

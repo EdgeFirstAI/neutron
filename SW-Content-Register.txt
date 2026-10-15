@@ -1,52 +1,384 @@
-Release Name: neutron-software-stack
-Release Version: 1.0.0
-Package License: LA_OPT_NXP_Software_License v63 May 2025 - Additional distribution license granted - Section 2.3 applies
-License Files: LICENSE.txt
-Release Location: https://github.com/nxp-imx/neutron
-Origin: NXP (proprietary)
+Release Name: Neutron Compiler
+Release Version: 3.2.3
+Package License: LA_OPT_NXP_Software_License v64.2 May 2026 - Standard use - Section 2.2 applies
 
---------------------------------------------
+----------------------------------------------------------------------------------------
 
-Build Dependencies:
+Package:                   Neutron Compiler
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Standard use - Section 2.2 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Neural Network Compiler for Neutron accelerator
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    NXP (proprietary)
 
---------------------------------------------
+----------------------------------------------------------------------------------------
+
+Package:                   Neutron Driver
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Additional Distribution License - Section 2.3 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Neutron accelerator Driver
+Release Location:          https://github.com/nxp-mcuxpresso/mcuxsdk-middleware-tensorflow/tree/main/third_party/neutron
+                           https://github.com/nxp-imx/neutron
+Origin:                    NXP (proprietary)
+
+----------------------------------------------------------------------------------------
+
+Package:                   Neutron Firmware
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Additional Distribution License - Section 2.3 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Neutron accelerator firmware
+Release Location:          https://github.com/nxp-mcuxpresso/mcuxsdk-middleware-tensorflow/tree/main/third_party/neutron
+                           https://github.com/nxp-imx/neutron
+Origin:                    NXP (proprietary)
+
+----------------------------------------------------------------------------------------
+
+Package:                   Neutron Runner
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Standard use - Section 2.2 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Validation and execution tool for TensorFlow Lite models that integrates Neutron's golden kernels into the TFLite runtime
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    NXP (proprietary)
+
+----------------------------------------------------------------------------------------
+
+Package:                   Tflite Splitter Tool
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Standard use - Section 2.2 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  A tool that is used to split (tile) one or multiple operators from a TFLite model with various options
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    NXP (proprietary)
+
+----------------------------------------------------------------------------------------
+
+Package:                   Tflite Quantization Tool
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Standard use - Section 2.2 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  A tool that generates a quantized model from a profiling CSV and floating point model
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    NXP (proprietary)
+
+----------------------------------------------------------------------------------------
+
+Package:                   Tflite Data Profiling Tool
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Standard use - Section 2.2 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  A tool that generates a range for variable tensors for a tflite floating point model
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    NXP (proprietary)
+
+----------------------------------------------------------------------------------------
+
+Package:                   Tflite Extractor
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Standard use - Section 2.2 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Tool used to extract TFLite subgraphs from a larger graph
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    NXP (proprietary)
+
+----------------------------------------------------------------------------------------
+
+Package:                   Tflite Optimizer
+Outgoing License:          LA_OPT_NXP_Software_License v64.2 May 2026 - Standard use - Section 2.2 applies
+License Files:             LA_OPT_NXP_Software_License.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Tool used to transform TFLite models using simple primitive transformations
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    NXP (proprietary)
+
+----------------------------------------------------------------------------------------
 
 Package:                   Pytorch Glow
-Outgoing License:          Apache 2.0
+Outgoing License:          Apache License 2.0
 License Files:             https://github.com/pytorch/glow/blob/master/LICENSE
-Type of content:           Source Code
+Type of content:           Binary (Windows/Linux executable)
 Description and comments:  Neural Network Compiler
-Release Location:          https://github.com/pytorch/glow
-Origin:                    Glow master (Apache-2.0) - https://github.com/pytorch/glow
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/pytorch/glow
 
---------------------------------------------
+----------------------------------------------------------------------------------------
+
+Package:                   TensorFlow
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/tensorflow/tensorflow/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Google Machine Learning framework
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/tensorflow/tensorflow/tree/v2.19.0
+
+----------------------------------------------------------------------------------------
+
+Package:                   cpuinfo
+Outgoing License:          BSD 2-Clause
+License Files:             https://github.com/pytorch/cpuinfo/blob/main/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Runtime CPU feature detection library.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/pytorch/cpuinfo/tree/8a1772a0c5c447df2d18edf33ec4603a8c9c04a6
+
+----------------------------------------------------------------------------------------
+
+Package:                   eigen
+Outgoing License:          Mozilla Public License Version 2.0
+License Files:             https://gitlab.com/libeigen/eigen/-/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  C++ template library for linear algebra and numerical computations.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://gitlab.com/libeigen/eigen/-/tree/3.4.0
+
+----------------------------------------------------------------------------------------
+
+Package:                   eigen
+Outgoing License:          Mozilla Public License Version 2.0
+License Files:             https://gitlab.com/libeigen/eigen/-/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  C++ template library for linear algebra and numerical computations.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://gitlab.com/libeigen/eigen/tree/33d0937c6bdf5ec999939fb17f2a553183d14a74
+
+----------------------------------------------------------------------------------------
+
+Package:                   farmhash
+Outgoing License:          MIT
+License Files:             https://github.com/google/farmhash/blob/master/COPYING
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  High-performance hash function library from Google.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/google/farmhash/tree/0d859a811870d10f53a594927d0d0b97573ad06d
+
+----------------------------------------------------------------------------------------
+
+Package:                   fft2d
+Outgoing License:          BSD-like
+License Files:             https://raw.githubusercontent.com/tensorflow/tensorflow/refs/heads/master/third_party/fft2d/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Lightweight 2D FFT implementation used in signal processing.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/tensorflow/tensorflow/tree/master/third_party/fft2d
+
+----------------------------------------------------------------------------------------
+
+Package:                   FlatBuffers
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/google/flatbuffers/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Efficient serialization library used for model storage.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/google/flatbuffers/tree/e6463926479bd6b330cbcf673f7e917803fd5831
+
+----------------------------------------------------------------------------------------
+
+Package:                   Gemmlowp
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/google/gemmlowp/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Quantized matrix multiplication library for low-precision inference.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/google/gemmlowp/tree/16e8662c34917be0065110bfcd9cc27d30f52fdf
+
+----------------------------------------------------------------------------------------
+
+Package:                   ml_dtypes
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/jax-ml/ml_dtypes/blob/main/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Stand-alone implementation of several NumPy dtype extensions used in machine learning libraries.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/jax-ml/ml_dtypes/tree/00d98cd92ade342fef589c0470379abb27baebe9
+
+----------------------------------------------------------------------------------------
+Package:                   neon2sse
+Outgoing License:          MIT
+License Files:             https://github.com/intel/ARM_NEON_2_x86_SSE/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Header-only library to emulate ARM NEON intrinsics on x86 SSE.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/intel/ARM_NEON_2_x86_SSE/tree/a15b489e1222b2087007546b4912e21293ea86ff
+
+----------------------------------------------------------------------------------------
+
+Package:                   ruy
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/google/ruy/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Optimized matrix multiplication engine for mobile inference.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/google/ruy/tree/3286a34cc8de6149ac6844107dfdffac91531e72
+
+----------------------------------------------------------------------------------------
+
+Package:                   xnnpack
+Outgoing License:          BSD 3-Clause
+License Files:             https://github.com/google/XNNPACK/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  High-performance library for neural network inference on CPUs.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/google/XNNPACK
+
+----------------------------------------------------------------------------------------
+
+Package:                   or-tools
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/google/or-tools/blob/stable/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Google Open-source, fast and portable software suite for solving combinatorial optimization problems.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/google/or-tools/tree/v9.12
+
+----------------------------------------------------------------------------------------
+
+Package:                   abseil-cpp
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/abseil/abseil-cpp/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Open-source collection of C++ code designed to augment the C++ standard library.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/abseil/abseil-cpp/tree/20240722.0
+
+----------------------------------------------------------------------------------------
+
+Package:                   abseil-cpp
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/abseil/abseil-cpp/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Open-source collection of C++ code designed to augment the C++ standard library.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/abseil/abseil-cpp/tree/fb3621f4f897824c0dbe0615fa94543df6192f30
+
+----------------------------------------------------------------------------------------
+
+Package:                   cbc
+Outgoing License:          Eclipse Public License - v 2.0
+License Files:             https://github.com/Mizux/Cbc/blob/b01a53da39577380acdb84d8a3577911c5d91a13/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Open-source mixed integer linear programming solver
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/Mizux/Cbc/tree/b01a53da39577380acdb84d8a3577911c5d91a13
+
+----------------------------------------------------------------------------------------
+
+Package:                   cgl
+Outgoing License:          Eclipse Public License - v 2.0
+License Files:             https://github.com/Mizux/Cgl/blob/59d95fba6605329d615d44ac7be0be2397210d5a/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Collection of cut generators that can be used with other COIN-OR packages that make use of cuts
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/Mizux/Cgl/tree/59d95fba6605329d615d44ac7be0be2397210d5a
+
+----------------------------------------------------------------------------------------
+
+Package:                   clp
+Outgoing License:          Eclipse Public License - v 2.0
+License Files:             https://github.com/Mizux/Clp/blob/914e0af16285ab6b0514947296213a0e67e80880/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Open-source linear programming solver
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/Mizux/Clp/tree/914e0af16285ab6b0514947296213a0e67e80880
+
+----------------------------------------------------------------------------------------
+
+Package:                   coinutils
+Outgoing License:          Eclipse Public License - v 2.0
+License Files:             https://github.com/Mizux/CoinUtils/blob/675cbb8e131f07705544a2e9074355cfa1a319b4/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Open-source collection of classes and helper functions that are generally useful to multiple COIN-OR projects
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/Mizux/CoinUtils/tree/675cbb8e131f07705544a2e9074355cfa1a319b4
+
+----------------------------------------------------------------------------------------
+
+Package:                   osi
+Outgoing License:          Eclipse Public License - v 2.0
+License Files:             https://github.com/Mizux/Osi/blob/d2809dd1ab01eb5c766edce7cea2ca2c1c5ecd2a/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Provides an abstract base class to a generic linear programming (LP) solver, along with derived classes for specific solvers
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/Mizux/Osi/tree/d2809dd1ab01eb5c766edce7cea2ca2c1c5ecd2a
+
+----------------------------------------------------------------------------------------
+
+Package:                   protobuf
+Outgoing License:          BSD 3-Clause
+License Files:             https://github.com/protocolbuffers/protobuf/blob/main/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Provides an abstract base class to a generic linear programming (LP) solver, along with derived classes for specific solvers
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/protocolbuffers/protobuf/tree/v26.1
+
+----------------------------------------------------------------------------------------
+
+Package:                   ZLIB
+Outgoing License:          zlib License
+License Files:             https://github.com/madler/zlib/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  General purpose data compression library
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/madler/zlib/releases/tag/v1.3.1
+
+----------------------------------------------------------------------------------------
+
+Package:                   utf8_range
+Outgoing License:          MIT
+License Files:             https://github.com/protocolbuffers/utf8_range/blob/main/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  UTF-8 validation library used by Protocol Buffers for efficient UTF-8 string validation
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/protocolbuffers/utf8_range
+
+----------------------------------------------------------------------------------------
 
 Package:                   gflags
 Outgoing License:          BSD 3-Clause
 License Files:             https://github.com/gflags/gflags/blob/master/COPYING.txt
-Type of content:           Source Code
-Description and comments:  Commandline flags library
-Release Location:          https://github.com/gflags/gflags
-Origin:                    gflags 2.2.2 (BSD 3-Clause) - https://github.com/gflags/gflags
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Command line interface flags library
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/gflags/gflags/tree/58cf1ef6d038e007c6b96aeda453503b59ffef8f
 
---------------------------------------------
+----------------------------------------------------------------------------------------
 
-Package:                   TensorFlow
-Outgoing License:          Apache 2.0
-License Files:             https://github.com/tensorflow/tensorflow/blob/master/LICENSE
-Type of content:           Source Code
-Description and comments:  Machine Learning platform
-Release Location:          https://github.com/tensorflow/tensorflow
-Origin:                    TensorFlow 2.14.0 (Apache-2.0) - https://github.com/tensorflow/tensorflow
+Package:                   pybind11
+Outgoing License:          BSD 3-Clause
+License Files:             https://github.com/pybind/pybind11/blob/master/LICENSE
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Header-only library to create Python bindings of existing C++ code.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/pybind/pybind11/tree/945e251a6ce7273058b36214d94415e9c9530b8e
 
---------------------------------------------
+----------------------------------------------------------------------------------------
 
-Package:                   Flatbuffers
-Outgoing License:          Apache 2.0
-License Files:             https://github.com/google/flatbuffers/blob/master/LICENSE
-Type of content:           Source Code
-Description and comments:  Cross platform serialization library
-Release Location:          https://github.com/google/flatbuffers
-Origin:                    Flatbuffers 23.5.26 (Apache-2.0) - https://github.com/google/flatbuffers
+Package:                   autoregistering-cpp-factory
+Outgoing License:          MIT
+License Files:             https://github.com/gsuberland/autoregistering-cpp-factory/blob/main/LICENSE.txt
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  Auto-registering C++ factory, designed for C++11.
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/gsuberland/autoregistering-cpp-factory/tree/90efd6edf4b9173dcdbb90e869ae974a0536c6ad
 
---------------------------------------------
+----------------------------------------------------------------------------------------
+
+Package:                   LLVM
+Outgoing License:          Apache License 2.0
+License Files:             https://github.com/llvm/llvm-project/blob/main/LICENSE.TXT
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  LLVM Compiler Infrastructure
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://github.com/llvm/llvm-project/releases/tag/llvmorg-21.1.8
+
+----------------------------------------------------------------------------------------
+
+Package:                   TOSA Tools
+Outgoing License:          Apache License 2.0
+License Files:             https://gitlab.arm.com/tosa/tosa-tools/-/blob/main/LICENSES/Apache-2.0.txt?ref_type=heads
+Type of content:           Binary (Windows/Linux executable)
+Description and comments:  A toolkit for working with the Tensor Operator Set Architecture (TOSA) Specification
+Release Location:          eIQ Website (https://www.nxp.com/design/software/development-software/eiq-ml-development-environment:EIQ)
+Origin:                    https://gitlab.arm.com/tosa/tosa-tools/-/tags/v2025.11.1
